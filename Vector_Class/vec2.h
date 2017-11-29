@@ -11,6 +11,8 @@ public:
 	vec2f();
 	// Overloaded constructor: specify initial values for x and y
 	vec2f(float xVal, float yVal);
+	// Overloaded constructor: specify one value for both x and y
+	vec2f(float xyVal);
 
 
 	// Returns the length of the vector from its origin
@@ -88,11 +90,6 @@ public:
 	void zero();
 
 
-	/// For convenience...
-
-	// Print the vector's properties to the console
-	void display();
-
 	/// Scaler functions
 	vec2f scalarAdd(float s);
 	vec2f scalarSubtract(float s);
@@ -111,6 +108,9 @@ public:
 	vec2f operator/=(const vec2f &vec);
 
 	/// Helper functions
+	// Convert Radians to Degrees
 	static double Rad2Deg(double radians);
 
+	// Print the vector's properties to the console
+	void display();
 };

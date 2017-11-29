@@ -9,16 +9,23 @@ const double PI = 3.141592653589793238;
 const double PI2 = 6.283185307179586476;
 
 
+// Default constructor: initialises all values to zero
 vec2f::vec2f()
 {
 	x = .0f;
 	y = .0f;
 }
-
+// Overloaded constructor: specify initial values for x and y
 vec2f::vec2f(float xVal, float yVal)
 {
 	x = xVal;
 	y = yVal;
+}
+// Overloaded constructor: specify one value for both x and y
+vec2f::vec2f(float xyVal)
+{
+	x = xyVal;
+	y = xyVal;
 }
 
 
@@ -222,18 +229,6 @@ void vec2f::zero()
 }
 
 
-// Print the vector's properties to the console
-void vec2f::display()
-{
-	std::cout << "Position (x, y)    : " << x << ", " << y << std::endl;
-	std::cout << "Magnitude (length) : " << this->getMagnitude() << std::endl;
-	std::cout << "Direction (Degrees): " << this->getDirectionDeg() << std::endl;
-	std::cout << "Direction (Radians): " << this->getDirectionRad() << std::endl;
-	std::cout << std::endl;
-	return;
-}
-
-
 /// Scalar functions
 vec2f vec2f::scalarAdd(float s) { return vec2f(x + s, y + s); }
 vec2f vec2f::scalarSubtract(float s) { return vec2f(x - s, y - s); }
@@ -253,8 +248,20 @@ vec2f vec2f::operator*=(const vec2f & vec) { x *= vec.x, y *= vec.y; return *thi
 vec2f vec2f::operator/=(const vec2f & vec) { x /= vec.x, y /= vec.y; return *this; }
 
 
-/// Helper function: convert Radians to Degrees
+/// Helper functions
+// Convert Radians to Degrees
 double vec2f::Rad2Deg(double radians)
 {
 	return radians*(180 / PI);
+}
+
+// Print the vector's properties to the console
+void vec2f::display()
+{
+	std::cout << "Position (x, y)    : " << x << ", " << y << std::endl;
+	std::cout << "Magnitude (length) : " << this->getMagnitude() << std::endl;
+	std::cout << "Direction (Degrees): " << this->getDirectionDeg() << std::endl;
+	std::cout << "Direction (Radians): " << this->getDirectionRad() << std::endl;
+	std::cout << std::endl;
+	return;
 }

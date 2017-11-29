@@ -103,5 +103,16 @@ void OutputBasicToConsole()
 
 void OutputAdvancedToConsole()
 {	
+	std::cout << "     VECTOR 1..." << std::endl << "------------------------------------------------" << std::endl;
+	// ... vec1 stuff goes here...
+	std::cout << "     VECTOR 2..." << std::endl << "------------------------------------------------" << std::endl;
+	// ... vec2 stuff goes here...
+	std::cout << "     VECTOR 3..." << std::endl << "------------------------------------------------" << std::endl;
+	// ... vec3 stuff goes here...
+	std::cout << "     VECTOR 4..." << std::endl << "------------------------------------------------" << std::endl;
+	// ... vec4 stuff goes here...
+	std::cout << std::endl;
+	std::cout << "================================================" << std::endl;
+
 	return;
 }
