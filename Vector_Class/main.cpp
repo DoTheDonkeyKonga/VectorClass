@@ -3,14 +3,15 @@
 #include "vec2.h"
 
 
+// for convenience
 void OutputBasicToConsole();
 void OutputAdvancedToConsole();
 
 // initialise our vectors
 vec2f myVec1;
 vec2f myVec2(6.f, 3.f);
-vec2f myVec3(-69.f, 69.f);
-vec2f myVec4(-150.f, -44.f);
+vec2f myVec3(269.f, 72.f);
+vec2f myVec4(150.5f, 144.2f);
 
 
 int main()
@@ -43,17 +44,18 @@ int main()
 	OutputBasicToConsole();
 
 
+	std::cout << "Now we're going to set their lengths,\nthen clamp their lengths to a MAXIMUM value of 25..." << std::endl << std::endl;
+
+	// set new lengths
 	myVec1.setMagnitude(100.f);
 	myVec2.setMagnitude(.001f);
 	myVec3.setMagnitude(-60.f);
 	myVec4.setMagnitude(22.f);
-
+	// arbitrarily clamp lengths to 25
 	myVec1.clampLength(25);
 	myVec2.clampLength(25);
 	myVec3.clampLength(25);
 	myVec4.clampLength(25);
-
-	std::cout << "Now we're going to set their lengths,\nthen clamp their lengths to a MAXIMUM value of 25..." << std::endl << std::endl;
 
 	OutputBasicToConsole();
 
@@ -72,10 +74,12 @@ int main()
 
 	myVec1.set(0, 0);
 	myVec2.set(6.f, 3.f);
-	myVec3.set(-69.f, 69.f);
-	myVec4.set(-150.f, -44.f);
+	myVec3.set(269.f, 72.f);
+	myVec4.set(150.5f, 144.2f);
 
 	OutputBasicToConsole();
+
+	// TODO add advanced tests to see if the rest of our methods and operators are working correctly
 
 	// keep terminal open
 	std::cin.ignore();
@@ -101,7 +105,7 @@ void OutputBasicToConsole()
 }
 
 
-void OutputAdvancedToConsole()
+void OutputAdvancedToConsole() // TODO implement
 {	
 	std::cout << "     VECTOR 1..." << std::endl << "------------------------------------------------" << std::endl;
 	// ... vec1 stuff goes here...

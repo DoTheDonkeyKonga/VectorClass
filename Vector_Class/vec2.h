@@ -1,3 +1,10 @@
+// TODO write proper description etc.
+
+/*
+	Written by DoTheDonkeyKonga @ I_M_Awesome Productions
+	IMAProductions@cyber-wizard.com
+*/
+
 #pragma once
 
 class vec2f {
@@ -21,12 +28,6 @@ public:
 	static float getMagnitude(const vec2f &vec);
 
 
-	// Sets the length of the vector
-	void setMagnitude(float newLength);
-	// Sets the length of vec
-	static void setMagnitude(vec2f &vec, float newLength);
-
-
 	// Returns direction (angle from the X axis) of the vector (in degrees)
 	double getDirectionDeg();
 	// Returns direction (angle from the X axis) of vec (in degrees)
@@ -35,6 +36,12 @@ public:
 	double getDirectionRad();
 	// Returns direction (angle from the X axis) of vec (in radians)
 	static double getDirectionRad(const vec2f &vec);
+
+
+	// Sets the length of the vector
+	void setMagnitude(float newLength);
+	// Sets the length of vec
+	static void setMagnitude(vec2f &vec, float newLength);
 
 
 	// Sets the direction (angle from the X axis) of the vector
@@ -80,7 +87,7 @@ public:
 
 
 	// Returns the vector's X and Y values as a string
-	std::string ToString();
+	std::string toString();
 
 
 	// Methods to set the vector's X and Y values
@@ -90,7 +97,13 @@ public:
 	void zero();
 
 
-	/// Scaler functions
+	/// Vector arithmetic functions
+	vec2f add(vec2f vec);
+	vec2f subtract(vec2f vec);
+	vec2f multiply(vec2f vec);
+	vec2f divide(vec2f vec);
+
+	/// Scaler arithmetic functions
 	vec2f scalarAdd(float s);
 	vec2f scalarSubtract(float s);
 	vec2f scalarMultiply(float s);
@@ -108,9 +121,9 @@ public:
 	vec2f operator/=(const vec2f &vec);
 
 	/// Helper functions
-	// Convert Radians to Degrees
-	static double Rad2Deg(double radians);
-
+	// Returns conversion from Radians to Degrees
+	static double RadsToDegs(double radians);
 	// Print the vector's properties to the console
 	void display();
+
 };
