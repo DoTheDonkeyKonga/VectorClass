@@ -15,7 +15,7 @@ vec2f::vec2f()
 	x = .0f;
 	y = .0f;
 }
-// Overloaded constructor: specify values for x and y
+// Overloaded constructor: specify initial values for x and y
 vec2f::vec2f(float xVal, float yVal)
 {
 	x = xVal;
@@ -69,13 +69,13 @@ void vec2f::setMagnitude(vec2f &vec, float newLength)
 double vec2f::getDirectionDeg()
 {
 	double angle = atan2(y, x);
-	return vec2f::RadsToDegs(angle);
+	return Rad2Deg(angle);
 }
 // Returns direction (angle from the X axis) of vec (in degrees)
 double vec2f::getDirectionDeg(const vec2f &vec)
 {
 	double angle = atan2(vec.y, vec.x);
-	return RadsToDegs(angle);
+	return vec2f::Rad2Deg(angle);
 }
 // Returns direction (angle from the X axis) of the vector (in radians)
 double vec2f::getDirectionRad()
@@ -92,14 +92,12 @@ double vec2f::getDirectionRad(const vec2f &vec)
 
 
 // Sets the direction (angle from the X axis) of the vector
-void vec2f::setDirection(float angle) // TODO implement function
+void vec2f::setDirection(float angle) // TODO write function
 {
-	return;
 }
 // Sets the direction (angle from the X axis) of vec
-void vec2f::setDirection(vec2f &vec, float angle) // TODO implement function
+void vec2f::setDirection(vec2f &vec, float angle) // TODO write function
 {
-	return;
 }
 
 
@@ -200,14 +198,13 @@ void vec2f::normalise(vec2f &vec)
 	return;
 }
 
-std::string vec2f::toString()
+
+// Returns the vector's X and Y values as a string
+std::string vec2f::ToString()
 {
 	std::string xyVal = "X = " + std::to_string(x) + " Y = " + std::to_string(y);
 	return xyVal;
 }
-
-
-
 
 
 // Methods to set the vector's X and Y values
@@ -232,12 +229,7 @@ void vec2f::zero()
 }
 
 
-/// Vector arithmetic functions
-vec2f vec2f::add(vec2f vec) { return x + vec.x, y + vec.y; }
-vec2f vec2f::subtract(vec2f vec) { return x - vec.x, y - vec.y; }
-vec2f vec2f::multiply(vec2f vec) { return x * vec.x, y * vec.y; }
-vec2f vec2f::divide(vec2f vec){ return x / vec.x, y / vec.y; }
-/// Scalar arithmetic functions
+/// Scalar functions
 vec2f vec2f::scalarAdd(float s) { return vec2f(x + s, y + s); }
 vec2f vec2f::scalarSubtract(float s) { return vec2f(x - s, y - s); }
 vec2f vec2f::scalarMultiply(float s) { return vec2f(x * s, y * s); }
@@ -245,23 +237,24 @@ vec2f vec2f::scalarDivide(float s) { return vec2f(x / s, y / s); }
 
 
 /// Overloaded operators
-vec2f vec2f::operator+(const vec2f & vec) const { return vec2f(x + vec.x, y + vec.y); } // TODO Test all overloaded arithmetic operators
+vec2f vec2f::operator+(const vec2f & vec) const { return vec2f(x + vec.x, y + vec.y); } // TODO Test all assignment operators
 vec2f vec2f::operator-(const vec2f & vec) const { return vec2f(x - vec.x, y - vec.y); }
 vec2f vec2f::operator*(const vec2f & vec) const { return vec2f(x * vec.x, y * vec.y); }
 vec2f vec2f::operator/(const vec2f & vec) const { return vec2f(x / vec.x, y / vec.y); }
 /// Compound assignment operators
-vec2f vec2f::operator+=(const vec2f & vec) { x += vec.x, y += vec.y; return *this; } // TODO Test all compound assignment operators
+vec2f vec2f::operator+=(const vec2f & vec) { x += vec.x, y += vec.y; return *this; }
 vec2f vec2f::operator-=(const vec2f & vec) { x -= vec.x, y -= vec.y; return *this; }
 vec2f vec2f::operator*=(const vec2f & vec) { x *= vec.x, y *= vec.y; return *this; }
 vec2f vec2f::operator/=(const vec2f & vec) { x /= vec.x, y /= vec.y; return *this; }
 
 
 /// Helper functions
-// Returns conversion from Radians to Degrees
-double vec2f::RadsToDegs(double radians)
+// Convert Radians to Degrees
+double vec2f::Rad2Deg(double radians)
 {
 	return radians*(180 / PI);
 }
+
 // Print the vector's properties to the console
 void vec2f::display()
 {
