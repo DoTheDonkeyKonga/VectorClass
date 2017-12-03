@@ -14,19 +14,28 @@ vec2f myVec3(269.f, 72.f);
 vec2f myVec4(150.5f, 144.2f);
 
 
+/*
+	Just for testing...
+*/
 int main()
 {
-	std::cout << "Hello World! We're testing our new vector class.\nThese are the default values we've given our vectors..." << std::endl << std::endl;
+	std::cout << "Hello World! We're testing our new vector class.\n\nThese are the default values we've given our vectors..." << std::endl << std::endl;
 
 
 	OutputBasicToConsole();
 
+	try {
+		myVec1.setMagnitude(0.f);
+		myVec2.setMagnitude(105.f);
+		myVec3.setMagnitude(12.f);
+		myVec4.setMagnitude(14.5f);
+	}
+	catch (const std::invalid_argument& arg) {
+		std::cerr << "Invalid argument: " << arg.what() << std::endl << std::endl;
+		std::cin.ignore();
+		return 0;
+	}
 
-	// set a new length for all of our vectors
-	myVec1.setMagnitude(5.f);
-	myVec2.setMagnitude(69.f);
-	myVec3.setMagnitude(12.f);
-	myVec4.setMagnitude(14.5f);
 
 	std::cout << "We've set new lengths for our vectors..." << std::endl << std::endl;
 

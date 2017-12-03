@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include <math.h>
 #include "vec2.h"
@@ -16,10 +17,10 @@ vec2f::vec2f()
 	y = .0f;
 }
 // Overloaded constructor: specify values for x and y
-vec2f::vec2f(float xVal, float yVal)
+vec2f::vec2f(float x, float y)
 {
-	x = xVal;
-	y = yVal;
+	this->x = x;
+	this->y = y;
 }
 // Overloaded constructor: specify one value for both x and y
 vec2f::vec2f(float xyVal)
@@ -30,7 +31,7 @@ vec2f::vec2f(float xyVal)
 
 
 // Returns the length of the vector from its origin
-float vec2f::getMagnitude()
+float vec2f::getMagnitude() const
 {
 	return sqrt(x * x + y * y);
 }
@@ -41,32 +42,8 @@ float vec2f::getMagnitude(const vec2f &vec)
 }
 
 
-// Sets the length of the vector
-void vec2f::setMagnitude(float newLength)
-{
-	float currentLength = this->getMagnitude();
-	if (currentLength != 0)
-	{
-		x *= newLength / currentLength;
-		y *= newLength / currentLength;
-	}
-	return;
-}
-// Sets the length of vec
-void vec2f::setMagnitude(vec2f &vec, float newLength)
-{
-	float currentLength = vec.getMagnitude();
-	if (currentLength != 0)
-	{
-		vec.x *= newLength / currentLength;
-		vec.y *= newLength / currentLength;
-	}
-	return;
-}
-
-
 // Returns direction (angle from the X axis) of the vector (in degrees)
-double vec2f::getDirectionDeg()
+double vec2f::getDirectionDeg() const
 {
 	double angle = atan2(y, x);
 	return vec2f::RadsToDegs(angle);
@@ -78,7 +55,7 @@ double vec2f::getDirectionDeg(const vec2f &vec)
 	return RadsToDegs(angle);
 }
 // Returns direction (angle from the X axis) of the vector (in radians)
-double vec2f::getDirectionRad()
+double vec2f::getDirectionRad() const
 {
 	double angle = atan2(y, x);
 	return angle;
@@ -88,6 +65,34 @@ double vec2f::getDirectionRad(const vec2f &vec)
 {
 	double angle = atan2(vec.y, vec.x);
 	return angle;
+}
+
+
+// Sets the length of the vector
+void vec2f::setMagnitude(float newLength)
+{
+	float currentLength = this->getMagnitude();
+	if (currentLength == 0.f) { return; }
+	if (newLength == 0.f)
+	{
+		throw std::invalid_argument("Value for new length cannot be zero (Division by zero not allowed)");
+	}
+	x *= newLength / currentLength;
+	y *= newLength / currentLength;
+	return;
+}
+// Sets the length of vec
+void vec2f::setMagnitude(vec2f &vec, float newLength)
+{
+	float currentLength = vec.getMagnitude();
+	if (currentLength == 0.f) { return; }
+	if(newLength == 0.f)
+	{
+		throw std::invalid_argument("Value for new length cannot be zero (Division by zero not allowed)");
+	}
+	vec.x *= newLength / currentLength;
+	vec.y *= newLength / currentLength;
+	return;
 }
 
 
@@ -104,19 +109,19 @@ void vec2f::setDirection(vec2f &vec, float angle) // TODO implement function
 
 
 // Returns the vector to target
-vec2f vec2f::vectorTo(vec2f &target)
+vec2f vec2f::vectorTo(vec2f &target) const
 {
 	return vec2f(target.x - x, target.y - y);
 }
 // Returns the vector from vec to target
-vec2f vec2f::vectorTo(vec2f &vec, vec2f &target)
+vec2f vec2f::vectorTo(const vec2f &vec, const vec2f &target)
 {
 	return vec2f(target.x - vec.x, target.y - vec.y);
 }
 
 
 // Returns the dot product of the vector and vec
-float vec2f::dotProduct(const vec2f &vec)
+float vec2f::dotProduct(const vec2f &vec) const
 {
 	return (x * vec.x) + (y * vec.y);
 }
@@ -128,7 +133,7 @@ float vec2f::dotProduct(const vec2f &vec1, const vec2f &vec2)
 
 
 // Returns the (2D analogue) cross product of the vector and vec
-float vec2f::crossProduct(const vec2f &vec)
+float vec2f::crossProduct(const vec2f &vec) const
 {
 	return (x * vec.y) - (y * vec.x);
 }
@@ -140,7 +145,7 @@ float vec2f::crossProduct(const vec2f &vec1, const vec2f &vec2)
 
 
 // Returns the distance between the vector and vec
-float vec2f::distanceTo(const vec2f &vec)
+float vec2f::distanceTo(vec2f &vec) const
 {
 	float dx = vec.x - x;
 	float dy = vec.y - y;
@@ -200,27 +205,30 @@ void vec2f::normalise(vec2f &vec)
 	return;
 }
 
-std::string vec2f::toString()
+std::string vec2f::toString() const
 {
 	std::string xyVal = "X = " + std::to_string(x) + " Y = " + std::to_string(y);
 	return xyVal;
 }
 
 
-
-
-
-// Methods to set the vector's X and Y values
+// Method to set the vector's X and Y values
 void vec2f::set(float x, float y)
 {
 	this->x = x;
 	this->y = y;
 	return;
 }
+void vec2f::set(float xyVal)
+{
+	x = xyVal;
+	y = xyVal;
+	return;
+}
 void vec2f::set(vec2f vec)
 {
-	this->x = vec.x;
-	this->y = vec.y;
+	x = vec.x;
+	y = vec.y;
 	return;
 }
 // Reset the vector to zero values
@@ -236,12 +244,26 @@ void vec2f::zero()
 vec2f vec2f::add(vec2f vec) { return x + vec.x, y + vec.y; }
 vec2f vec2f::subtract(vec2f vec) { return x - vec.x, y - vec.y; }
 vec2f vec2f::multiply(vec2f vec) { return x * vec.x, y * vec.y; }
-vec2f vec2f::divide(vec2f vec){ return x / vec.x, y / vec.y; }
+vec2f vec2f::divide(vec2f vec)
+{
+	if (vec.x == 0 || vec.y == 0)
+	{
+		throw std::invalid_argument("Division by zero not allowed!");
+	}
+	return x / vec.x, y / vec.y;
+}
 /// Scalar arithmetic functions
 vec2f vec2f::scalarAdd(float s) { return vec2f(x + s, y + s); }
 vec2f vec2f::scalarSubtract(float s) { return vec2f(x - s, y - s); }
 vec2f vec2f::scalarMultiply(float s) { return vec2f(x * s, y * s); }
-vec2f vec2f::scalarDivide(float s) { return vec2f(x / s, y / s); }
+vec2f vec2f::scalarDivide(float s)
+{
+	if (s == 0)
+	{
+		throw std::invalid_argument("Division by zero not allowed!");
+	}
+	return vec2f(x / s, y / s);
+}
 
 
 /// Overloaded operators
