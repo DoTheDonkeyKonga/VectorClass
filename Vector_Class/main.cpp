@@ -6,6 +6,7 @@
 // for convenience
 void OutputBasicToConsole();
 void OutputAdvancedToConsole();
+void OutputStaticToConsole();
 
 // initialise our vectors
 vec2f myVec1;
@@ -88,7 +89,7 @@ int main()
 
 	OutputBasicToConsole();
 
-	// TODO add advanced tests to see if the rest of our methods and operators are working correctly
+	// TODO add advanced tests to see if the rest of our methods and operators etc. are working correctly
 
 	// keep terminal open
 	std::cin.ignore();
@@ -128,4 +129,11 @@ void OutputAdvancedToConsole() // TODO implement
 	std::cout << "================================================" << std::endl;
 
 	return;
+}
+
+void OutputStaticToConsole() // TODO implement
+{
+	// Test the static functions in here...
+
+	// ...
 }

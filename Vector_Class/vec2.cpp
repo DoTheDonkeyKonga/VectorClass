@@ -43,25 +43,25 @@ float vec2f::getMagnitude(const vec2f &vec)
 
 
 // Returns direction (angle from the X axis) of the vector in degrees
-double vec2f::getDirectionDeg() const
+double vec2f::getDirectionDegrees() const
 {
 	double angle = atan2(y, x);
 	return RadsToDegs(angle);
 }
 // Returns direction (angle from the X axis) of vec in degrees
-double vec2f::getDirectionDeg(const vec2f &vec)
+double vec2f::getDirectionDegrees(const vec2f &vec)
 {
 	double angle = atan2(vec.y, vec.x);
 	return vec2f::RadsToDegs(angle);
 }
 // Returns direction (angle from the X axis) of the vector in radians
-double vec2f::getDirectionRad() const
+double vec2f::getDirectionRadians() const
 {
 	double angle = atan2(y, x);
 	return angle;
 }
 // Returns direction (angle from the X axis) of vec in radians
-double vec2f::getDirectionRad(const vec2f &vec)
+double vec2f::getDirectionRadians(const vec2f &vec)
 {
 	double angle = atan2(vec.y, vec.x);
 	return angle;
@@ -75,7 +75,7 @@ void vec2f::setMagnitude(float newLength)
 	if (currentLength == 0.f) { return; }
 	if (newLength == 0.f)
 	{
-		throw std::invalid_argument("Value for new length cannot be zero (Division by zero not allowed)");
+		throw std::invalid_argument("Value for new length cannot be zero (division by zero not allowed)");
 	}
 	x *= newLength / currentLength;
 	y *= newLength / currentLength;
@@ -88,7 +88,7 @@ void vec2f::setMagnitude(vec2f &vec, float newLength)
 	if (currentLength == 0.f) { return; }
 	if(newLength == 0.f)
 	{
-		throw std::invalid_argument("Value for new length cannot be zero (Division by zero not allowed)");
+		throw std::invalid_argument("Value for new length cannot be zero (division by zero not allowed)");
 	}
 	vec.x *= newLength / currentLength;
 	vec.y *= newLength / currentLength;
@@ -292,8 +292,8 @@ void vec2f::display()
 {
 	std::cout << "Position (x, y)    : " << x << ", " << y << std::endl;
 	std::cout << "Magnitude (length) : " << this->getMagnitude() << std::endl;
-	std::cout << "Direction (Degrees): " << this->getDirectionDeg() << std::endl;
-	std::cout << "Direction (Radians): " << this->getDirectionRad() << std::endl;
+	std::cout << "Direction (Degrees): " << this->getDirectionDegrees() << std::endl;
+	std::cout << "Direction (Radians): " << this->getDirectionRadians() << std::endl;
 	std::cout << std::endl;
 	return;
 }
