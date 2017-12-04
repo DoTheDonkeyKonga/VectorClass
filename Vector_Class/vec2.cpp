@@ -6,9 +6,9 @@
 #include <math.h>
 #include "vec2.h"
 
+
 const double PI = 3.141592653589793238;
 const double PI2 = 6.283185307179586476;
-
 
 // Default constructor: initialises all values to zero
 vec2f::vec2f()
@@ -42,25 +42,25 @@ float vec2f::getMagnitude(const vec2f &vec)
 }
 
 
-// Returns direction (angle from the X axis) of the vector (in degrees)
+// Returns direction (angle from the X axis) of the vector in degrees
 double vec2f::getDirectionDeg() const
 {
 	double angle = atan2(y, x);
-	return vec2f::RadsToDegs(angle);
+	return RadsToDegs(angle);
 }
-// Returns direction (angle from the X axis) of vec (in degrees)
+// Returns direction (angle from the X axis) of vec in degrees
 double vec2f::getDirectionDeg(const vec2f &vec)
 {
 	double angle = atan2(vec.y, vec.x);
-	return RadsToDegs(angle);
+	return vec2f::RadsToDegs(angle);
 }
-// Returns direction (angle from the X axis) of the vector (in radians)
+// Returns direction (angle from the X axis) of the vector in radians
 double vec2f::getDirectionRad() const
 {
 	double angle = atan2(y, x);
 	return angle;
 }
-// Returns direction (angle from the X axis) of vec (in radians)
+// Returns direction (angle from the X axis) of vec in radians
 double vec2f::getDirectionRad(const vec2f &vec)
 {
 	double angle = atan2(vec.y, vec.x);
@@ -212,7 +212,7 @@ std::string vec2f::toString() const
 }
 
 
-// Method to set the vector's X and Y values
+// Methods to conveniently set the vector's X and Y values
 void vec2f::set(float x, float y)
 {
 	this->x = x;
@@ -267,15 +267,18 @@ vec2f vec2f::scalarDivide(float s)
 
 
 /// Overloaded operators
-vec2f vec2f::operator+(const vec2f & vec) const { return vec2f(x + vec.x, y + vec.y); } // TODO Test all overloaded arithmetic operators
-vec2f vec2f::operator-(const vec2f & vec) const { return vec2f(x - vec.x, y - vec.y); }
-vec2f vec2f::operator*(const vec2f & vec) const { return vec2f(x * vec.x, y * vec.y); }
-vec2f vec2f::operator/(const vec2f & vec) const { return vec2f(x / vec.x, y / vec.y); }
+vec2f vec2f::operator+(const vec2f &vec) const { return vec2f(x + vec.x, y + vec.y); } // TODO Test all overloaded arithmetic operators
+vec2f vec2f::operator-(const vec2f &vec) const { return vec2f(x - vec.x, y - vec.y); }
+vec2f vec2f::operator*(const vec2f &vec) const { return vec2f(x * vec.x, y * vec.y); }
+vec2f vec2f::operator/(const vec2f &vec) const { return vec2f(x / vec.x, y / vec.y); }
 /// Compound assignment operators
-vec2f vec2f::operator+=(const vec2f & vec) { x += vec.x, y += vec.y; return *this; } // TODO Test all compound assignment operators
-vec2f vec2f::operator-=(const vec2f & vec) { x -= vec.x, y -= vec.y; return *this; }
-vec2f vec2f::operator*=(const vec2f & vec) { x *= vec.x, y *= vec.y; return *this; }
-vec2f vec2f::operator/=(const vec2f & vec) { x /= vec.x, y /= vec.y; return *this; }
+vec2f vec2f::operator+=(const vec2f &vec) { x += vec.x, y += vec.y; return *this; } // TODO Test all compound assignment operators
+vec2f vec2f::operator-=(const vec2f &vec) { x -= vec.x, y -= vec.y; return *this; }
+vec2f vec2f::operator*=(const vec2f &vec) { x *= vec.x, y *= vec.y; return *this; }
+vec2f vec2f::operator/=(const vec2f &vec) { x /= vec.x, y /= vec.y; return *this; }
+/// Comparison operators
+vec2f vec2f::operator==(const vec2f & vec) { return x == vec.x && y == vec.y; }
+vec2f vec2f::operator!=(const vec2f & vec) { return x != vec.x || y != vec.y; }
 
 
 /// Helper functions

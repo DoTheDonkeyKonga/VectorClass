@@ -1,4 +1,5 @@
 // TODO write proper description etc.
+// TODO convert to template class
 
 /*
 	Written by DoTheDonkeyKonga @ I_M_Awesome Productions
@@ -21,20 +22,19 @@ public:
 	// Overloaded constructor: specify one value for both x and y
 	vec2f(float xyVal);
 
-
 	// Returns the length of the vector from its origin
 	float getMagnitude() const;
 	// Returns the length of vec from its origin
 	static float getMagnitude(const vec2f &vec);
 
 
-	// Returns direction (angle from the X axis) of the vector (in degrees)
+	// Returns direction (angle from the X axis) of the vector in degrees
 	double getDirectionDeg() const;
-	// Returns direction (angle from the X axis) of vec (in degrees)
+	// Returns direction (angle from the X axis) of vec in degrees
 	static double getDirectionDeg(const vec2f &vec);
-	// Returns direction (angle from the X axis) of the vector (in radians)
+	// Returns direction (angle from the X axis) of the vector in radians
 	double getDirectionRad() const;
-	// Returns direction (angle from the X axis) of vec (in radians)
+	// Returns direction (angle from the X axis) of vec in radians
 	static double getDirectionRad(const vec2f &vec);
 
 
@@ -90,7 +90,7 @@ public:
 	std::string toString() const;
 
 
-	// Methods to set the vector's X and Y values
+	// Methods to conveniently set the vector's X and Y values
 	void set(float x, float y);
 	void set(float xyVal);
 	void set(vec2f vec);
@@ -120,6 +120,9 @@ public:
 	vec2f operator-=(const vec2f &vec);
 	vec2f operator*=(const vec2f &vec);
 	vec2f operator/=(const vec2f &vec);
+	/// Comparison operators
+	vec2f operator==(const vec2f &vec);
+	vec2f operator!=(const vec2f &vec);
 
 	/// Helper functions
 	// Returns conversion from Radians to Degrees
