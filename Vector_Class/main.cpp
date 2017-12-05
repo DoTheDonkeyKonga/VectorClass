@@ -9,10 +9,10 @@ void OutputAdvancedToConsole();
 void OutputStaticToConsole();
 
 // initialise our vectors
-vec2f myVec1;
-vec2f myVec2(6.f, 3.f);
-vec2f myVec3(269.f, 72.f);
-vec2f myVec4(150.5f, 144.2f);
+vec2f myVec1(-2.f, 0.f);
+vec2f myVec2(-2.f, -2.f);
+vec2f myVec3(0.f, -2.f);
+vec2f myVec4(2.f, -2.f);
 
 
 /*
@@ -26,7 +26,7 @@ int main()
 	OutputBasicToConsole();
 
 	try {
-		myVec1.setMagnitude(0.f);
+		myVec1.setMagnitude(550.f);
 		myVec2.setMagnitude(105.f);
 		myVec3.setMagnitude(12.f);
 		myVec4.setMagnitude(14.5f);

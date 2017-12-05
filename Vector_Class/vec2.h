@@ -3,6 +3,7 @@
 
 #pragma once
 
+// TODO convert to template class
 
 /*
 	Written by DoTheDonkeyKonga @ I_M_Awesome Productions
@@ -18,7 +19,8 @@
 */
 
 
-class vec2f { // TODO convert to template class
+//A class to define a mathematical vector with two coordinates(x and y)
+class vec2f { 
 
 public:
 	
@@ -31,6 +33,9 @@ public:
 	vec2f(float x, float y);
 	// Overloaded constructor: specify one value for both x and y
 	vec2f(float xyVal);
+	// Overloaded constructor: initialise values from another vec2f
+	vec2f(vec2f &vec);
+
 
 
 	/// MEMBER FUNCTIONS
@@ -110,46 +115,47 @@ public:
 
 	/// STATIC FUNCTIONS
 
-	// Returns the length of vec from its origin
+	// Static: Returns the length of vec from its origin
 	static float getMagnitude(const vec2f &vec);
 
-	// Returns direction (angle from the X axis) of vec in degrees
+	// Static: Returns direction (angle from the X axis) of vec in degrees
 	static double getDirectionDegrees(const vec2f &vec);
 
-	// Returns direction (angle from the X axis) of vec in radians
+	// Static: Returns direction (angle from the X axis) of vec in radians
 	static double getDirectionRadians(const vec2f &vec);
 
-	// Sets the length of vec
+	// Static: Sets the length of vec
 	static void setMagnitude(vec2f &vec, float newLength);
 
-	// Sets the direction (angle from the X axis) of vec
+	// Static: Sets the direction (angle from the X axis) of vec
 	static void setDirection(vec2f &vec, float angle); // TODO implement definition
 
-	// Returns the vector from vec to target
+	// Static: Returns the vector from vec to target
 	static vec2f vectorTo(const vec2f &vec, const vec2f &target);
 
-	// Returns the dot product of vec1 and vec2
+	// Static: Returns the dot product of vec1 and vec2
 	static float dotProduct(const vec2f &vec1, const vec2f &vec2);
 
-	// Returns the (2D analogue) cross product of vec1 and vec2
+	// Static: Returns the (2D analogue) cross product of vec1 and vec2
 	static float crossProduct(const vec2f &vec1, const vec2f &vec2);
 
-	// Returns the distance between vec1 and vec2
+	// Static: Returns the distance between vec1 and vec2
 	static float distanceTo(const vec2f &vec1, const vec2f &vec2);
 
-	// Limits the magnitude of vec only if it exceeds maxLength
+	// Static: Limits the magnitude of vec only if it exceeds maxLength
 	static void clampLength(vec2f &vec, float maxLength);
 
-	// Converts vec to a unit vector (length 1)
+	// Static: Converts vec to a unit vector (length 1)
 	static void normalise(vec2f &vec);
+
+	// Static: Returns conversion from Radians to Degrees
+	static double RadsToDegs(double radians);
+
 
 
 	/// HELPER FUNCTIONS
-
-	// Returns conversion from Radians to Degrees
-	static double RadsToDegs(double radians);
 	
-	// Print the vector's properties to the console
+	// Prints the vector's properties to the console
 	void display();
 };
 
