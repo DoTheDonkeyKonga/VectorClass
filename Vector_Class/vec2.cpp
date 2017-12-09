@@ -8,7 +8,7 @@
 
 
 const double PI = 3.141592653589793238;
-const double PI2 = 6.283185307179586476;
+//const double PI2 = 6.283185307179586476;
 
 
 // Default constructor: initialises all values to zero
@@ -18,7 +18,7 @@ vec2f::vec2f(float x, float y) { this->x = x; this->y = y; }
 // Overloaded constructor: specify one value for both x and y
 vec2f::vec2f(float xyVal) { x = xyVal; y = xyVal; }
 // Overloaded constructor: initialise values from another vec2f
-vec2f::vec2f(vec2f & vec) { x = vec.x; y = vec.y; }
+vec2f::vec2f(const vec2f &vec) { x = vec.x; y = vec.y; }
 
 
 
@@ -139,7 +139,7 @@ void vec2f::set(float xyVal)
 	y = xyVal;
 	return;
 }
-void vec2f::set(vec2f vec)
+void vec2f::set(const vec2f vec)
 {
 	x = vec.x;
 	y = vec.y;
@@ -157,7 +157,7 @@ void vec2f::zero()
 
 /// OPERATORS AND ARITHMETIC FUNCTIONS
 
-/// Vector arithmetic functions
+// Vector arithmetic functions
 vec2f vec2f::add(vec2f vec) { return x + vec.x, y + vec.y; }
 vec2f vec2f::subtract(vec2f vec) { return x - vec.x, y - vec.y; }
 vec2f vec2f::multiply(vec2f vec) { return x * vec.x, y * vec.y; }
@@ -169,7 +169,7 @@ vec2f vec2f::divide(vec2f vec)
 	}
 	return x / vec.x, y / vec.y;
 }
-/// Scalar arithmetic functions
+// Scalar arithmetic functions
 vec2f vec2f::scalarAdd(float s) { return vec2f(x + s, y + s); }
 vec2f vec2f::scalarSubtract(float s) { return vec2f(x - s, y - s); }
 vec2f vec2f::scalarMultiply(float s) { return vec2f(x * s, y * s); }
@@ -182,17 +182,18 @@ vec2f vec2f::scalarDivide(float s)
 	return vec2f(x / s, y / s);
 }
 
-/// Overloaded operators
+
+// Overloaded operators
 vec2f vec2f::operator+(const vec2f &vec) const { return vec2f(x + vec.x, y + vec.y); } // TODO Test all overloaded arithmetic operators
 vec2f vec2f::operator-(const vec2f &vec) const { return vec2f(x - vec.x, y - vec.y); }
 vec2f vec2f::operator*(const vec2f &vec) const { return vec2f(x * vec.x, y * vec.y); }
 vec2f vec2f::operator/(const vec2f &vec) const { return vec2f(x / vec.x, y / vec.y); }
-/// Compound assignment operators
+// Compound assignment operators
 vec2f vec2f::operator+=(const vec2f &vec) { x += vec.x, y += vec.y; return *this; } // TODO Test all compound assignment operators
 vec2f vec2f::operator-=(const vec2f &vec) { x -= vec.x, y -= vec.y; return *this; }
 vec2f vec2f::operator*=(const vec2f &vec) { x *= vec.x, y *= vec.y; return *this; }
 vec2f vec2f::operator/=(const vec2f &vec) { x /= vec.x, y /= vec.y; return *this; }
-/// Comparison operators
+// Comparison operators
 vec2f vec2f::operator==(const vec2f & vec) { return x == vec.x && y == vec.y; }
 vec2f vec2f::operator!=(const vec2f & vec) { return x != vec.x || y != vec.y; }
 
