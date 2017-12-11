@@ -3,37 +3,36 @@
 
 #pragma once
 
-// TODO convert to template class and define some typedefs for int, float, double etc.
 
 /*
-Written by DoTheDonkeyKonga @ I_M_Awesome Productions
-IMAProductions@cyber-wizard.com
-05.12.2017, ver.1.0
+	A class to define a mathematical vector with two coordinates (x and y).
+	It can be used to represent anything with two dimensions (e.g. a point or a velocity etc.).
+	All members are public and can be accessed directly without the need for accessors or mutators etc.
+	It contains common mathematical functions such as dot product, cross product and magnitude (length) etc.
+	Most functions also have static versions.
+	Certain operators are overloaded for simple arithmetic and comparison operations but explicit arithmetic
+	functions are also included for convenience/preference.
 
-A class to define a mathematical vector with two coordinates (x and y).
-It can be used to represent anything with two dimensions (e.g. a point or a velocity etc.).
-All members are public and can be accessed directly without the need for getters and setters etc.
-It contains common mathematical functions such as dot product, cross product and magnitude (length) etc.
-Most functions also have static versions.
-Certain operators are overloaded for simple arithmetic and comparison operations but explicit arithmetic
-functions are also included for convenience/preference.
+	Written by DoTheDonkeyKonga @ I_M_Awesome Productions
+	IMAProductions@cyber-wizard.com
+	05.12.2017, ver: 1.0
 */
 
 
-// A class to define a mathematical vector with two coordinates(x and y)
 class vec2f {
 
 public:
+	// Default constructor: initialises all values to zero
+	vec2f();
+	// Conversion constructors
+	vec2f(float xVal, float yVal);
+	vec2f(float xyVal);
+	// Copy constructor
+	vec2f(const vec2f &vec);
+
 
 	float x;
 	float y;
-
-	// Default constructor: initialises all values to zero
-	vec2f();
-	vec2f(float x, float y);
-	vec2f(float xyVal);
-	vec2f(const vec2f &vec);
-
 
 
 	/// MEMBER FUNCTIONS
@@ -63,19 +62,18 @@ public:
 	void zero();
 
 
-
 	/// OPERATORS AND ARITHMETIC FUNCTIONS
 
 	// Vector arithmetic functions
-	vec2f add(vec2f vec);
-	vec2f subtract(vec2f vec);
-	vec2f multiply(vec2f vec);
-	vec2f divide(vec2f vec);
+	void add(const vec2f &vec);
+	void subtract(const vec2f &vec);
+	void multiply(const vec2f &vec);
+	void divide(const vec2f &vec);
 	// Scaler arithmetic functions
-	vec2f scalarAdd(float s);
-	vec2f scalarSubtract(float s);
-	vec2f scalarMultiply(float s);
-	vec2f scalarDivide(float s);
+	void scalarAdd(const float &s);
+	void scalarSubtract(const float &s);
+	void scalarMultiply(const float &s);
+	void scalarDivide(const float &s);
 
 	// Overloaded operators
 	vec2f operator+(const vec2f &vec) const;
@@ -90,7 +88,6 @@ public:
 	// Comparison operators
 	vec2f operator==(const vec2f &vec);
 	vec2f operator!=(const vec2f &vec);
-
 
 
 	/// STATIC FUNCTIONS
@@ -111,7 +108,6 @@ public:
 	static void clampLength(vec2f &vec, float maxLength);
 	static void normalise(vec2f &vec);
 	static double RadsToDegs(double radians);
-
 
 
 	/// HELPER FUNCTIONS

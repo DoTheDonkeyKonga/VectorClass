@@ -3,7 +3,7 @@
 #include "vec2.h"
 
 
-// for convenience
+// for testing convenience
 void OutputBasicToConsole();
 void OutputAdvancedToConsole();
 void OutputStaticToConsole();

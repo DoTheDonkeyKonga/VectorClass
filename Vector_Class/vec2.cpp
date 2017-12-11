@@ -1,4 +1,3 @@
-#pragma once
 
 #include <iostream>
 #include <stdexcept>
@@ -12,14 +11,13 @@ const double PI = 3.141592653589793238;
 
 
 // Default constructor: initialises all values to zero
-vec2f::vec2f() { x = .0f; y = .0f; }
-// Overloaded constructor: specify values for x and y
-vec2f::vec2f(float x, float y) { this->x = x; this->y = y; }
-// Overloaded constructor: specify one value for both x and y
-vec2f::vec2f(float xyVal) { x = xyVal; y = xyVal; }
-// Overloaded constructor: initialise values from another vec2f
-vec2f::vec2f(const vec2f &vec) { x = vec.x; y = vec.y; }
-
+vec2f::vec2f() : x(.0f), y(0.f) { }
+// Conversion constructor: specify values for x and y
+vec2f::vec2f(float xVal, float yVal) : x(xVal), y(yVal) { }
+// Conversion constructor: specify one value for both x and y
+vec2f::vec2f(float xyVal) : x(xyVal), y(xyVal) { }
+// Copy constructor: initialise values from another vec2f
+vec2f::vec2f(const vec2f &vec) : x(vec.x), y(vec.y) { }
 
 
 /// MEMBER FUNCTIONS
@@ -154,32 +152,31 @@ void vec2f::zero()
 }
 
 
-
 /// OPERATORS AND ARITHMETIC FUNCTIONS
 
 // Vector arithmetic functions
-vec2f vec2f::add(vec2f vec) { return x + vec.x, y + vec.y; }
-vec2f vec2f::subtract(vec2f vec) { return x - vec.x, y - vec.y; }
-vec2f vec2f::multiply(vec2f vec) { return x * vec.x, y * vec.y; }
-vec2f vec2f::divide(vec2f vec)
+void vec2f::add(const vec2f &vec) { x += vec.x, y += vec.y; }
+void vec2f::subtract(const vec2f &vec) { x -= vec.x, y -= vec.y; }
+void vec2f::multiply(const vec2f &vec) { x *= vec.x, y *= vec.y; }
+void vec2f::divide(const vec2f &vec)
 {
 	if (vec.x == 0 || vec.y == 0)
 	{
 		throw std::invalid_argument("Division by zero not allowed!");
 	}
-	return x / vec.x, y / vec.y;
+	x /= vec.x, y /= vec.y;
 }
 // Scalar arithmetic functions
-vec2f vec2f::scalarAdd(float s) { return vec2f(x + s, y + s); }
-vec2f vec2f::scalarSubtract(float s) { return vec2f(x - s, y - s); }
-vec2f vec2f::scalarMultiply(float s) { return vec2f(x * s, y * s); }
-vec2f vec2f::scalarDivide(float s)
+void vec2f::scalarAdd(const float &s) { x += s, y += s; }
+void vec2f::scalarSubtract(const float &s) { x -= s, y -= s; }
+void vec2f::scalarMultiply(const float &s) { x *= s, y *= s; }
+void vec2f::scalarDivide(const float &s)
 {
 	if (s == 0)
 	{
 		throw std::invalid_argument("Division by zero not allowed!");
 	}
-	return vec2f(x / s, y / s);
+	x /= s, y /= s;
 }
 
 
@@ -196,7 +193,6 @@ vec2f vec2f::operator/=(const vec2f &vec) { x /= vec.x, y /= vec.y; return *this
 // Comparison operators
 vec2f vec2f::operator==(const vec2f & vec) { return x == vec.x && y == vec.y; }
 vec2f vec2f::operator!=(const vec2f & vec) { return x != vec.x || y != vec.y; }
-
 
 
 /// STATIC FUNCTIONS
@@ -302,7 +298,6 @@ double vec2f::RadsToDegs(double radians)
 {
 	return radians*(180 / PI);
 }
-
 
 
 /// HELPER FUNCTIONS
